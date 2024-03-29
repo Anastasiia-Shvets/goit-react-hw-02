@@ -6,7 +6,7 @@ import Notification from './components/Natification/Notification';
 
 
 function App() {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [feedbackData] = useState(false);
   const [values, setValues] = useState({
     good: 0,
     neutral: 0,
@@ -14,18 +14,8 @@ function App() {
   });
 
   useEffect(() => {
-    const storedData = localStorage.getItem('feedbackData');
-    if (storedData) {
-      setValues(JSON.parse(storedData));
-      setIsLoaded(true);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (isLoaded) {
-      localStorage.setItem('feedbackData', JSON.stringify(values));
-    }
-  }, [values, isLoaded]);
+    localStorage.setItem('feedbackData', JSON.stringify(values));
+  }, [values]);
 
   const updateFeedback = feedbackType => {
     setValues(prevState => ({
