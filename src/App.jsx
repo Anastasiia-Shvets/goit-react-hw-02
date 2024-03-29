@@ -6,11 +6,10 @@ import Notification from './components/Natification/Notification';
 
 
 function App() {
-  const [feedbackData] = useState(false);
-  const [values, setValues] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0
+
+  const [values, setValues] = useState(() => {
+    const storedData = localStorage.getItem('feedbackData');
+    return storedData ? JSON.parse(storedData) : { good: 0, neutral: 0, bad: 0 };
   });
 
   useEffect(() => {
@@ -40,7 +39,7 @@ function App() {
       <h1>Sip Happens Café</h1>
       <p>Please leave your feedback about our service by selecting one of the options below.</p>
       <Options updateFeedback={updateFeedback} resetFeedback={resetFeedback} totalFeedback={totalFeedback} />
-      {totalFeedback > 0 ? <Feedback values={values} positivePercentage={positivePercentage} /> : <Notification message="No feedback yet."/>}
+      {totalFeedback > 0 ? <Feedback values={values} positivePercentage={positivePercentage} /> : <Notification message="No feedback yet." />}
     </div>
   );
 }
