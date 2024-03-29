@@ -3,6 +3,7 @@ import './App.css'
 import Options from './components/Options/Options';
 import Feedback from './components/Feedback/Feedback';
 import Notification from './components/Natification/Notification';
+import Description from './components/Description/Description';
 
 
 function App() {
@@ -36,8 +37,7 @@ function App() {
 
   return (
     <div>
-      <h1>Sip Happens Café</h1>
-      <p>Please leave your feedback about our service by selecting one of the options below.</p>
+      <Description />
       <Options updateFeedback={updateFeedback} resetFeedback={resetFeedback} totalFeedback={totalFeedback} />
       {totalFeedback > 0 ? <Feedback values={values} positivePercentage={positivePercentage} /> : <Notification message="No feedback yet." />}
     </div>
